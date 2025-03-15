@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMugSaucer, faMugHot, faWhiskeyGlass } from "@fortawesome/free-solid-svg-icons";
 import AddDrink, { Drink } from "./AddDrink";
-import { aggregator } from './utils/aggregator';
+import DrinkList from "./DrinkList";
 
 export type DrinkType = 'Kopi' | 'Teh' | 'Milo';
 
@@ -32,11 +32,12 @@ const DrinkMenu = () => {
     </Stack>
     {drinkType && <>
       <AddDrink addDrink={addDrink} />
-      {Object.entries(aggregator(drinkList)).map(([drinkString, count], index) => {
+      <DrinkList drinkList={drinkList} />
+      {/* {Object.entries(aggregator(drinkList)).map(([drinkString, count], index) => {
         return <div key={index}>
           {drinkString} - {count}
         </div>
-      })}
+      })} */}
     </>}
   </>
 };

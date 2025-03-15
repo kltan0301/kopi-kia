@@ -1,4 +1,4 @@
-import { Drink } from "../AddDrink";
+import { Drink } from "../components/AddDrink";
 
 export const aggregator = (drinks: Drink[]) => {
    return drinks.reduce((acc, drink) => {

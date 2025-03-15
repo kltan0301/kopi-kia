@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import DrinkMenu from "./DrinkMenu";
+import DrinkMenu from "./components/DrinkMenu";
 
 export default function Home() {
   return (
