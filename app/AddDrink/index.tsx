@@ -5,11 +5,13 @@ import TemperatureSelection, { Temperature } from "./TemperatureSelection";
 import SweetnessSelection, { Sweetness } from "./SweetnessSelection";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { DrinkType } from "../DrinkMenu";
 
 export type Drink = {
   variation?: Variation;
   temperature?: Temperature;
   sweetness?: Sweetness;
+  type?: DrinkType;
 }
 
 type AddDrinkProps = {
