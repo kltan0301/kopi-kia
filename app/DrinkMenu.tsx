@@ -4,8 +4,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMugSaucer, faMugHot, faWhiskeyGlass } from "@fortawesome/free-solid-svg-icons";
-import DrinkOptions from "./DrinkOptions";
-import type { DrinkType } from "./DrinkOptions";
+import AddDrink, { Drink } from "./AddDrink";
 
 const DRINK_TO_ICON_MAPPING = [
   { name: 'Kopi', icon: faMugSaucer },
@@ -14,18 +13,21 @@ const DRINK_TO_ICON_MAPPING = [
 ];
 
 const DrinkMenu = () => {
-  const [drink, setDrink] = useState('Kopi');
-  const [drinkType, setDrinkSelection] = useState<DrinkType>();
+  const [drinkList, setDrinkList] = useState<Drink[]>([]);
+
+  const addDrink = (newDrink: Drink) => {
+    setDrinkList((prevList) => [...prevList, newDrink]);
+  };
 
   return <>
     <Stack spacing={3} direction="row">
-      {DRINK_TO_ICON_MAPPING.map(({ name, icon }) => <Button variant="contained" onClick={() => setDrink(name)}>
+      {DRINK_TO_ICON_MAPPING.map(({ name, icon }) => <Button key={name} variant="contained">
         {name}
         <FontAwesomeIcon icon={icon}  size="2x" />
       </Button>)}
     </Stack>
-    <DrinkOptions setDrinkType={(type: DrinkType) => { setDrinkSelection(type) }}/>
-    <p>{drink} {drinkType}</p>
+    <AddDrink addDrink={addDrink} />
+    {drinkList.map((drink, index) => <div key={index}>{index}.{drink.type}, {drink.sweetness}, {drink.temperature}</div>)}
   </>
 };
 
