@@ -18,8 +18,8 @@ type SelectionGroupProps = {
 const SelectionGroup = ({ defaultValue, options, label, onSelect }: SelectionGroupProps) => {
   const [selectedValue, setSelectedValue] = useState(defaultValue);
 
-  return <Stack direction="column" spacing={1} padding={1.5}>
-      <Typography variant="h6" component="h2" sx={{ color: '#6c757d', fontSize: 'medium' }}>{label}</Typography>
+  return <Stack direction="column" spacing={1} padding={0.5}>
+      <Typography variant="h6" component="h1" sx={{ color: '#6c757d' }}>{label}</Typography>
       <Stack direction="row" spacing={1}>
         {options.map(({label, value}) => (
           <Chip
@@ -29,6 +29,7 @@ const SelectionGroup = ({ defaultValue, options, label, onSelect }: SelectionGro
               setSelectedValue(value);
             }}
             sx={{
+              fontSize: 'large',
               backgroundColor: value === selectedValue ? '#7096e1 !important' : '#eceffd',
               color: value === selectedValue ? 'white' : '#738eb7',
               border: 'none'

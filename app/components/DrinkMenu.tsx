@@ -9,10 +9,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMugHot } from "@fortawesome/free-solid-svg-icons";
 
 const DRINK_TO_ICON_MAPPING = [
-  { name: 'Kopi', fontSize: 'small' },
-  { name: 'Teh', fontSize: 'small' },
-  { name: 'Yuan Yang', fontSize: 'x-small' },
-  { name: 'Milo', fontSize: 'small' },
+  { name: 'Kopi', fontSize: 'medium' },
+  { name: 'Teh', fontSize: 'medium' },
+  { name: 'Yuan Yang', fontSize: 'small' },
+  { name: 'Milo', fontSize: 'medium' },
 ];
 
 const DrinkMenu = () => {
