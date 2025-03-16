@@ -5,7 +5,7 @@ import Logo from "./components/Logo";
 export default function Home() {
   return (
     <main>
-      <Stack sx={{ justifyContent: 'center', alignItems: 'center', padding: '12px', backgroundColor: '#EEF1FE' }}>
+      <Stack sx={{ justifyContent: 'center', alignItems: 'center', padding: '15px', backgroundColor: '#2A3694' }}>
         <Logo />
       </Stack>
       <DrinkMenu />

@@ -5,6 +5,7 @@ import TemperatureSelection from "./TemperatureSelection";
 import SweetnessSelection from "./SweetnessSelection";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import StrengthSelection from './StrengthSelection';
 import MilkinessSelection from './MilkinessSelection';
 
@@ -26,18 +27,31 @@ const AddDrink = ({ addDrink, drinkType }: AddDrinkProps) => {
 
   const onOptionsChange = (updatedOptions: Drink) => {
     setDrink((prevDrink) => ({
-    ...prevDrink,
-    ...updatedOptions,
-  }));
+      ...prevDrink,
+      ...updatedOptions,
+      sweetness: updatedOptions.milkiness === 'normal' && prevDrink.sweetness === 'kosong' ? 'normal' : updatedOptions.sweetness
+    }));
   }
 
-  return <Stack spacing={2} mt={2} pl={1} pr={1}>
-    {drinkType !== 'Milo' && <MilkinessSelection onOptionsChange={(milkiness: Milkiness) => { onOptionsChange({ milkiness }) }}/>}
+  return <Stack spacing={2} mt={2} pl={1.5} pr={1.5}>
+    {drinkType !== 'Milo' && <>
+      <MilkinessSelection onOptionsChange={(milkiness: Milkiness) => { onOptionsChange({ milkiness }) }}/>
+      <Divider variant="middle" sx={{ mt: 2 }}/>
+    </>}
     <StrengthSelection onOptionsChange={(strength: Strength) => { onOptionsChange({ strength }) }}/>
+    <Divider variant="middle" sx={{ mt: 2 }}/>
     <SweetnessSelection milkiness={drink.milkiness || 'normal'} onOptionsChange={(sweetness: Sweetness) => { onOptionsChange({ sweetness }) }}/>
+    <Divider variant="middle" sx={{ mt: 2 }}/>
     <TemperatureSelection onOptionsChange={(temperature: Temperature) => { onOptionsChange({ temperature }) }}/>
 
-    <Button variant="outlined" sx={{ border: "2px solid", margin: "25px 10px 20px 10px !important", fontSize: 'large'}} onClick={() => { addDrink(drink)}}>Add</Button>
+    <Button sx={{
+      border: 'none',
+      color: 'white',
+      borderRadius: '5px',
+      margin: '25px 10px 20px 10px !important',
+      backgroundColor: '#293994',
+      fontSize: 'large'
+    }} onClick={() => { addDrink(drink)}}>Add</Button>
   </Stack>
 };
 

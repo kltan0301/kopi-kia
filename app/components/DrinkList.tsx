@@ -28,7 +28,7 @@ type DrinkListProps = {
 
 const DrinkList = ({ drinkList, onListAdd, onListRemove }: DrinkListProps) => {
   return <>
-    <Typography variant="h6" component="h1" sx={{ color: '#6c757d', mt: 3, pl: 2 }}>Drink List</Typography>
+    <Typography variant="h6" component="h1" sx={{ color: '#6c757d', mt: 3, pl: 2 }}>Drink Orders</Typography>
     <Grid container spacing={0.5} padding={1} sx={{ fontSize: 'large' }} mt={2}>
     {Object.entries(aggregator(drinkList)).map(([drinkString, {count, drink}]: [string, { count: number, drink: Drink}]) => (
         <>

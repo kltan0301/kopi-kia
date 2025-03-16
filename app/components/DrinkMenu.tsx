@@ -6,8 +6,6 @@ import Divider from '@mui/material/Divider';
 import AddDrink, { Drink } from "./AddDrink";
 import DrinkList from "./DrinkList";
 import { DrinkType, DRINK_DEFAULTS } from "../constants";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMugHot } from "@fortawesome/free-solid-svg-icons";
 
 const DRINK_TO_ICON_MAPPING = [
   { name: 'Kopi', fontSize: 'medium' },
@@ -58,17 +56,13 @@ const DrinkMenu = () => {
                 variant="outlined"
                 onClick={() => setDrinkType(name as DrinkType)}
                 sx={{
-                  color: drinkType === name ? 'white': '#495057',
-                  backgroundColor: drinkType === name ? '#072AC8': '#dee2e6',
-                  borderColor: drinkType === name ? '#758ECD': '#dee2e6',
+                  color: drinkType === name ? 'white': '#6A7CA8',
+                  backgroundColor: drinkType === name ? '#293994': '#EEF0F8',
+                  border: 'none',
                   fontSize,
                 }}
         >
           {name}
-          {/* <Stack direction="column" spacing={1}>
-            <FontAwesomeIcon icon={faMugHot} size="3x" />
-            {name}
-          </Stack> */}
       </Button>)}
     </Stack>
     {drinkType && <>
