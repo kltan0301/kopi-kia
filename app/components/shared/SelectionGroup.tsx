@@ -20,9 +20,10 @@ const SelectionGroup = ({ defaultValue, options, label, onSelect }: SelectionGro
 
   return <Stack direction="column" spacing={1} padding={0.5}>
       <Typography variant="h6" component="h1" sx={{ color: '#6c757d' }}>{label}</Typography>
-      <Stack direction="row" spacing={1}>
-        {options.map(({label, value}) => (
+      <Stack direction="row" spacing={2}>
+        {options.map(({label, value}, index) => (
           <Chip
+            key={index}
             label={label}
             onClick={() => {
               onSelect(value);
@@ -36,11 +37,6 @@ const SelectionGroup = ({ defaultValue, options, label, onSelect }: SelectionGro
             }}
           />
         ))}
-        {/* <Chip label="Default" onClick={() => {}} sx={{ backgroundColor: '#7096e1', color: 'white' }} />
-        <Chip label="O" variant="outlined" sx={ { backgroundColor: '#eceffd', border: 'none', color: '#738eb7' }} onClick={() => {}} />
-        <Chip label="C" variant="outlined" sx={ { backgroundColor: '#eceffd', border: 'none', color: '#738eb7' }} onClick={() => {}} />
-        <Chip label="Gao" variant="outlined" sx={ { backgroundColor: '#eceffd', border: 'none', color: '#738eb7' }} onClick={() => {}} />
-        <Chip label="Po" variant="outlined" sx={ { backgroundColor: '#eceffd', border: 'none', color: '#738eb7' }} onClick={() => {}} /> */}
       </Stack>
     </Stack>
 };

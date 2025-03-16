@@ -28,12 +28,12 @@ const AddDrink = ({ addDrink }: AddDrinkProps) => {
   }));
   }
 
-  return <Stack spacing={2}>
+  return <Stack spacing={2} mt={2}>
     <VariationSelection onOptionsChange={(variation: Variation) => { onOptionsChange({ variation }) }}/>
     <SweetnessSelection onOptionsChange={(sweetness: Sweetness) => { onOptionsChange({ sweetness }) }}/>
     <TemperatureSelection onOptionsChange={(temperature: Temperature) => { onOptionsChange({ temperature }) }}/>
 
-    <Button onClick={() => { addDrink(drink)}}>Add</Button>
+    <Button onClick={() => { addDrink(drink)}} sx={{ fontSize: 'large' }}>Add</Button>
   </Stack>
 };
 

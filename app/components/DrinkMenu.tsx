@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import AddDrink, { Drink } from "./AddDrink";
 import DrinkList from "./DrinkList";
 import { DrinkType, DRINK_DEFAULTS } from "../constants";
@@ -22,6 +23,10 @@ const DrinkMenu = () => {
   const addDrink = (newDrink: Drink) => {
     const drinkToBeAdded = { ...DRINK_DEFAULTS, ...newDrink, type: drinkType };
     setDrinkList((prevList) => [...prevList, drinkToBeAdded]);
+  };
+
+  const removeDrink = (index: number) => {
+    setDrinkList((prevList) => prevList.filter((_, i) => i !== index));
   };
 
   return <>
@@ -47,7 +52,11 @@ const DrinkMenu = () => {
     {drinkType && <>
       <AddDrink addDrink={addDrink} />
     </>}
-    <DrinkList drinkList={drinkList} />
+    {drinkList.length > 0 && <>
+      <Divider variant="middle" sx={{ mt: 2 }}/>
+      <DrinkList drinkList={drinkList} onDelete={(index) => removeDrink(index) }/>
+    </>}
+    
   </>
 };
 
