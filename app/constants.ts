@@ -1,6 +1,6 @@
 export type DrinkType = 'Kopi' | 'Teh' | 'Milo';
 export type Sweetness = 'kosong' | 'siew dai' | 'normal' | 'ga dai';
-export type Temperature = 'hot' | 'cold';
+export type Temperature = 'sio' | 'peng';
 export type Variation = 'default' | 'o' | 'c' | 'gao' | 'po';
 
 export const DRINK_DEFAULTS = {

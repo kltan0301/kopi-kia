@@ -28,7 +28,7 @@ const DrinkList = ({ drinkList }: { drinkList: Drink[] }) => {
             <Item>{count}</Item>
           </Grid>
           <Grid size={2}>
-            <Item>X</Item>
+            <Item onClick={() => { alert('clicked') }}>X</Item>
           </Grid>
         </>
       ))}
