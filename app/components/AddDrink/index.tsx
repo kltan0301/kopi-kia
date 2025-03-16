@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import VariationSelection, { Variation } from "./VariationSelection";
-import TemperatureSelection, { Temperature } from "./TemperatureSelection";
-import SweetnessSelection, { Sweetness } from "./SweetnessSelection";
+import { Temperature, Sweetness, Variation, DrinkType } from "../../constants";
+import TemperatureSelection from "./TemperatureSelection";
+import SweetnessSelection from "./SweetnessSelection";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { DrinkType } from "../DrinkMenu";
+import VariationSelection from './VariationSelection';
 
 export type Drink = {
   variation?: Variation;
@@ -22,7 +22,7 @@ const AddDrink = ({ addDrink }: AddDrinkProps) => {
   const [drink, setDrink] = useState<Drink>({});
 
   const onOptionsChange = (updatedOptions: Drink) => {
-     setDrink((prevDrink) => ({
+    setDrink((prevDrink) => ({
     ...prevDrink,
     ...updatedOptions,
   }));

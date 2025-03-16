@@ -2,17 +2,17 @@
 import { useState } from "react";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMugSaucer, faMugHot, faWhiskeyGlass } from "@fortawesome/free-solid-svg-icons";
 import AddDrink, { Drink } from "./AddDrink";
 import DrinkList from "./DrinkList";
-
-export type DrinkType = 'Kopi' | 'Teh' | 'Milo';
+import { DrinkType, DRINK_DEFAULTS } from "../constants";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMugHot } from "@fortawesome/free-solid-svg-icons";
 
 const DRINK_TO_ICON_MAPPING = [
-  { name: 'Kopi', icon: faMugSaucer },
-  { name: 'Teh', icon: faMugHot },
-  { name: 'Milo', icon: faWhiskeyGlass },
+  { name: 'Kopi', fontSize: 'small' },
+  { name: 'Teh', fontSize: 'small' },
+  { name: 'Yuan Yang', fontSize: 'x-small' },
+  { name: 'Milo', fontSize: 'small' },
 ];
 
 const DrinkMenu = () => {
@@ -20,25 +20,34 @@ const DrinkMenu = () => {
   const [drinkType, setDrinkType] = useState<DrinkType>();
 
   const addDrink = (newDrink: Drink) => {
-    setDrinkList((prevList) => [...prevList, {...newDrink, type: drinkType }]);
+    const drinkToBeAdded = { ...DRINK_DEFAULTS, ...newDrink, type: drinkType };
+    setDrinkList((prevList) => [...prevList, drinkToBeAdded]);
   };
 
   return <>
-    <Stack spacing={3} direction="row">
-      {DRINK_TO_ICON_MAPPING.map(({ name, icon }) => <Button key={name} variant="contained" onClick={() => setDrinkType(name as DrinkType)} sx={{ backgroundColor: drinkType === name ? 'orange': 'blue' }}>
-        {name}
-        <FontAwesomeIcon icon={icon}  size="2x" />
+    <Stack spacing={2} direction="row" sx={{ mt: 2, justifyContent: 'center', pt: 1.5, pb: 1.5 }}>
+      {DRINK_TO_ICON_MAPPING.map(({ name, fontSize }) => 
+        <Button key={name}
+                variant="outlined"
+                onClick={() => setDrinkType(name as DrinkType)}
+                sx={{
+                  color: drinkType === name ? 'white': '#495057',
+                  backgroundColor: drinkType === name ? '#072AC8': '#dee2e6',
+                  borderColor: drinkType === name ? '#758ECD': '#dee2e6',
+                  fontSize,
+                }}
+        >
+          {name}
+          {/* <Stack direction="column" spacing={1}>
+            <FontAwesomeIcon icon={faMugHot} size="3x" />
+            {name}
+          </Stack> */}
       </Button>)}
     </Stack>
     {drinkType && <>
       <AddDrink addDrink={addDrink} />
-      <DrinkList drinkList={drinkList} />
-      {/* {Object.entries(aggregator(drinkList)).map(([drinkString, count], index) => {
-        return <div key={index}>
-          {drinkString} - {count}
-        </div>
-      })} */}
     </>}
+    <DrinkList drinkList={drinkList} />
   </>
 };
 

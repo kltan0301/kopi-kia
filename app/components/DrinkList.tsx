@@ -3,7 +3,6 @@ import { Drink } from "./AddDrink";
 import { Key } from 'react';
 import Grid from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 
 const Item = styled(Box)(({ theme }) => ({
