@@ -51,9 +51,9 @@ const DrinkMenu = () => {
     </Stack>
     {drinkType && <>
       <AddDrink addDrink={addDrink} />
+      <Divider variant="middle" sx={{ mt: 2 }}/>
     </>}
     {drinkList.length > 0 && <>
-      <Divider variant="middle" sx={{ mt: 2 }}/>
       <DrinkList drinkList={drinkList} onDelete={(index) => removeDrink(index) }/>
     </>}
     
