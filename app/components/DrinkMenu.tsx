@@ -67,7 +67,7 @@ const DrinkMenu = () => {
       </Button>)}
     </Stack>
     {drinkType && <>
-      <AddDrink addDrink={addDrink} />
+      <AddDrink addDrink={addDrink} drinkType={drinkType} />
       <Divider variant="middle" sx={{ mt: 2 }}/>
     </>}
     {drinkList.length > 0 && <>

@@ -16,9 +16,10 @@ export type Drink = {
 
 type AddDrinkProps = {
   addDrink: (newDrink: Drink) => void;
+  drinkType: DrinkType;
 };
 
-const AddDrink = ({ addDrink }: AddDrinkProps) => {
+const AddDrink = ({ addDrink, drinkType }: AddDrinkProps) => {
   const [drink, setDrink] = useState<Drink>({});
 
   const onOptionsChange = (updatedOptions: Drink) => {
@@ -29,7 +30,7 @@ const AddDrink = ({ addDrink }: AddDrinkProps) => {
   }
 
   return <Stack spacing={2} mt={2}>
-    <VariationSelection onOptionsChange={(variation: Variation) => { onOptionsChange({ variation }) }}/>
+    <VariationSelection drinkType={drinkType} onOptionsChange={(variation: Variation) => { onOptionsChange({ variation }) }}/>
     <SweetnessSelection onOptionsChange={(sweetness: Sweetness) => { onOptionsChange({ sweetness }) }}/>
     <TemperatureSelection onOptionsChange={(temperature: Temperature) => { onOptionsChange({ temperature }) }}/>
 
