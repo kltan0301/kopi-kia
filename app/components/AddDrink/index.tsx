@@ -31,7 +31,7 @@ const AddDrink = ({ addDrink, drinkType }: AddDrinkProps) => {
   }));
   }
 
-  return <Stack spacing={2} mt={2}>
+  return <Stack spacing={2} mt={2} pl={1} pr={1}>
     {drinkType !== 'Milo' && <MilkinessSelection onOptionsChange={(milkiness: Milkiness) => { onOptionsChange({ milkiness }) }}/>}
     <StrengthSelection onOptionsChange={(strength: Strength) => { onOptionsChange({ strength }) }}/>
     <SweetnessSelection milkiness={drink.milkiness || 'normal'} onOptionsChange={(sweetness: Sweetness) => { onOptionsChange({ sweetness }) }}/>

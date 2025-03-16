@@ -1,12 +1,13 @@
-import { Typography } from "@mui/material";
 import DrinkMenu from "./components/DrinkMenu";
+import Stack from '@mui/material/Stack';
+import Logo from "./components/Logo";
 
 export default function Home() {
   return (
     <main>
-      <Typography sx={{ marginLeft: 2, textTransform: 'uppercase', textAlign: 'center' }} variant="h4" component="h1">
-        Kopi Kia
-      </Typography>
+      <Stack sx={{ justifyContent: 'center', alignItems: 'center', padding: '12px', backgroundColor: '#EEF1FE' }}>
+        <Logo />
+      </Stack>
       <DrinkMenu />
     </main>
   );

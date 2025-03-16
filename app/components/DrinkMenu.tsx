@@ -52,7 +52,7 @@ const DrinkMenu = () => {
   }
 
   return <>
-    <Stack spacing={2} direction="row" sx={{ mt: 2, justifyContent: 'center', pt: 1.5, pb: 1.5 }}>
+    <Stack spacing={2} direction="row" sx={{ mt: 1, justifyContent: 'center', padding: 1.5 }}>
       {DRINK_TO_ICON_MAPPING.map(({ name, fontSize }) => 
         <Button key={name}
                 variant="outlined"
