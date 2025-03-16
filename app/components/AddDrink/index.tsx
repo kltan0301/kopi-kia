@@ -33,7 +33,7 @@ const AddDrink = ({ addDrink }: AddDrinkProps) => {
     <SweetnessSelection onOptionsChange={(sweetness: Sweetness) => { onOptionsChange({ sweetness }) }}/>
     <TemperatureSelection onOptionsChange={(temperature: Temperature) => { onOptionsChange({ temperature }) }}/>
 
-    <Button onClick={() => { addDrink(drink)}} sx={{ fontSize: 'large' }}>Add</Button>
+    <Button variant="outlined" sx={{ border: "2px solid", margin: "25px 10px 20px 10px !important", fontSize: 'large'}} onClick={() => { addDrink(drink)}}>Add</Button>
   </Stack>
 };
 

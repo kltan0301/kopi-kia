@@ -16,6 +16,13 @@ const DRINK_TO_ICON_MAPPING = [
   { name: 'Milo', fontSize: 'medium' },
 ];
 
+const drinkMatch = (drink1: Drink, drink2: Drink) => {
+  return drink1.variation === drink2.variation
+    && drink1.sweetness === drink2.sweetness
+    && drink1.temperature === drink2.temperature
+    && drink1.type === drink2.type;
+};
+
 const DrinkMenu = () => {
   const [drinkList, setDrinkList] = useState<Drink[]>([]);
   const [drinkType, setDrinkType] = useState<DrinkType>();
@@ -25,9 +32,19 @@ const DrinkMenu = () => {
     setDrinkList((prevList) => [...prevList, drinkToBeAdded]);
   };
 
-  const removeDrink = (index: number) => {
-    setDrinkList((prevList) => prevList.filter((_, i) => i !== index));
+  const onListAdd = (drink: Drink) => {
+    setDrinkList((prevList) => [...prevList, drink]);
   };
+
+  const onListRemove = (drink: Drink) => {
+     setDrinkList((prevList) => {
+      const drinkIndex = prevList.findIndex((d) => drinkMatch(d, drink));
+      if (drinkIndex === -1) {
+        return prevList;
+      }
+      return [...prevList.slice(0, drinkIndex), ...prevList.slice(drinkIndex + 1)];
+     });
+  }
 
   return <>
     <Stack spacing={2} direction="row" sx={{ mt: 2, justifyContent: 'center', pt: 1.5, pb: 1.5 }}>
@@ -54,7 +71,7 @@ const DrinkMenu = () => {
       <Divider variant="middle" sx={{ mt: 2 }}/>
     </>}
     {drinkList.length > 0 && <>
-      <DrinkList drinkList={drinkList} onDelete={(index) => removeDrink(index) }/>
+      <DrinkList drinkList={drinkList} onListAdd={onListAdd} onListRemove={onListRemove}/>
     </>}
     
   </>

@@ -1,17 +1,15 @@
 import { aggregator } from '../utils/aggregator';
 import { Drink } from "./AddDrink";
-import { Key } from 'react';
 import Grid from '@mui/material/Grid2';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faMinus } from '@fortawesome/free-solid-svg-icons';
 
 const Item = styled(Box)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  fontSize: 'medium',
+  fontSize: 'large',
   textAlign: 'left',
   alignItems: 'center',
   color: theme.palette.text.secondary,
@@ -21,26 +19,26 @@ const Item = styled(Box)(({ theme }) => ({
   }),
 }));
 
-const DrinkList = ({ drinkList, onDelete }: { drinkList: Drink[], onDelete: (index: number) => void }) => {
+type DrinkListProps = {
+  drinkList: Drink[],
+  onListAdd: (drink: Drink) => void,
+  onListRemove: (drink: Drink) => void
+};
+
+const DrinkList = ({ drinkList, onListAdd, onListRemove }: DrinkListProps) => {
+  console.log(aggregator(drinkList))
   return <Grid container spacing={0.5} padding={1} sx={{ fontSize: 'large' }} mt={2}>
-    {Object.entries(aggregator(drinkList)).map(([drinkString, count]: [string, number], index: number) => (
+    {Object.entries(aggregator(drinkList)).map(([drinkString, {count, drink}]: [string, { count: number, drink: Drink}]) => (
         <>
-          <Grid size={7}>
+          <Grid size={8}>
             <Item>{drinkString}</Item>
           </Grid>
-          <Grid size={3}>
+          <Grid size={4}>
             <Item sx={{ display: 'flex', justifyContent: 'space-between' }}>
-              <FontAwesomeIcon fontSize="medium" color="#495057" icon={faMinus}/>
+              <FontAwesomeIcon onClick={() => { onListRemove(drink) }} fontSize="medium" color="#adb5bd" icon={faMinus}/>
               {count}
-              <FontAwesomeIcon fontSize="medium" color="#495057" icon={faAdd}/>
+              <FontAwesomeIcon onClick={() => { onListAdd(drink) }}  fontSize="medium" color="#adb5bd" icon={faAdd}/>
             </Item>
-          </Grid>
-          <Grid size={2}>
-            <Button onClick={() => { onDelete(index) }}><FontAwesomeIcon fontSize="medium" color="#495057" icon={faTrashCan}/></Button>
-            {/* <Box flex={1} display="flex" justifyContent="center"> */}
-              {/* <Button onClick={() => { console.log('edit') }}><FontAwesomeIcon icon={faPencil}/></Button> */}
-
-            {/* </Box> */}
           </Grid>
         </>
       ))}
