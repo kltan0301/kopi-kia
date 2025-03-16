@@ -27,6 +27,10 @@ const DrinkMenu = () => {
   const [drinkType, setDrinkType] = useState<DrinkType>();
 
   const addDrink = (newDrink: Drink) => {
+    if (newDrink.milkiness === 'normal' && newDrink.sweetness === 'kosong' ) {
+      alert('Invalid sweetness!');
+    }
+
     const updatedDrink = { ...newDrink };
     if (drinkType === 'Milo') {
       delete updatedDrink.milkiness;

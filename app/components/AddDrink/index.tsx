@@ -29,7 +29,6 @@ const AddDrink = ({ addDrink, drinkType }: AddDrinkProps) => {
     setDrink((prevDrink) => ({
       ...prevDrink,
       ...updatedOptions,
-      sweetness: updatedOptions.milkiness === 'normal' && prevDrink.sweetness === 'kosong' ? 'normal' : updatedOptions.sweetness
     }));
   }
 
