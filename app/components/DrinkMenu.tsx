@@ -17,7 +17,8 @@ const DRINK_TO_ICON_MAPPING = [
 ];
 
 const drinkMatch = (drink1: Drink, drink2: Drink) => {
-  return drink1.variation === drink2.variation
+  return drink1.strength === drink2.strength
+    && drink1.milkiness === drink2.milkiness
     && drink1.sweetness === drink2.sweetness
     && drink1.temperature === drink2.temperature
     && drink1.type === drink2.type;
@@ -28,7 +29,11 @@ const DrinkMenu = () => {
   const [drinkType, setDrinkType] = useState<DrinkType>();
 
   const addDrink = (newDrink: Drink) => {
-    const drinkToBeAdded = { ...DRINK_DEFAULTS, ...newDrink, type: drinkType };
+    const updatedDrink = { ...newDrink };
+    if (drinkType === 'Milo') {
+      delete updatedDrink.milkiness;
+    }
+    const drinkToBeAdded = { ...DRINK_DEFAULTS, ...updatedDrink, type: drinkType };
     setDrinkList((prevList) => [...prevList, drinkToBeAdded]);
   };
 
