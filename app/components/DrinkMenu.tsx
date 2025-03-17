@@ -64,7 +64,7 @@ const DrinkMenu = () => {
           onClick={() => setDrinkType(name as DrinkType)}
           sx={{
             color: drinkType === name ? 'white': '#6A7CA8',
-            backgroundColor: drinkType === name ? '#293994': '#EEF0F8',
+            backgroundColor: drinkType === name ? '#293994': '#ADBCD1',
             border: 'none',
             borderRadius: '7px',
             padding: '15px 10px',
@@ -77,10 +77,7 @@ const DrinkMenu = () => {
             <Typography variant="subtitle1" sx={{ textAlign: 'center', color: drinkType === name ? '#293994': '#6c757d' }}>{name}</Typography>
         </Stack>)}
     </Stack>
-    {drinkType && <>
-      <AddDrink addDrink={addDrink} drinkType={drinkType} />
-      <Divider variant="middle" sx={{ mt: 2 }}/>
-    </>}
+    {drinkType && <AddDrink addDrink={addDrink} drinkType={drinkType} />}
     {drinkList.length > 0 && <>
       <DrinkList drinkList={drinkList} onListAdd={onListAdd} onListRemove={onListRemove}/>
     </>}
