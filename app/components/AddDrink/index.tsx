@@ -1,14 +1,10 @@
 "use client";
 import { useState } from "react";
 import { Temperature, Sweetness, Strength, Milkiness, DrinkType } from "../../constants";
-import TemperatureSelection from "./TemperatureSelection";
 import SelectionGroup from '../shared/SelectionGroup';
-import SweetnessSelection from "./SweetnessSelection";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import StrengthSelection from './StrengthSelection';
-import MilkinessSelection from './MilkinessSelection';
 
 const DEFAULT_DRINK: Drink = {
   milkiness: 'normal' as Milkiness,
