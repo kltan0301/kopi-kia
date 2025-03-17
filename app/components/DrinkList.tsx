@@ -33,7 +33,7 @@ const DrinkList = ({ drinkList, onListAdd, onListRemove }: DrinkListProps) => {
   return <Box sx={{ backgroundColor: '#EAEBEF', borderTopLeftRadius: '20px', borderTopRightRadius: '20px', minHeight: '40vh' }} pt={1} mt={1}>
     <Stack direction="row" sx={{ mt: 1, padding: 2, display: 'flex', justifyContent: 'space-between' }}>
       <Typography variant="h6" component="h1" sx={{ color: '#6c757d' }}>Drink Orders</Typography>
-      <Typography variant="h6" component="h1" sx={{ color: '#6c757d', fontWeight: 600 }}></Typography>
+      <Typography variant="h6" component="h1" sx={{ color: '#6c757d', fontWeight: 600 }}>{drinkList.length}</Typography>
     </Stack>
 
     <Grid container spacing={0.5} padding={1} sx={{ fontSize: 'large' }}>
