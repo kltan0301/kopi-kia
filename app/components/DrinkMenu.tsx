@@ -29,6 +29,7 @@ const DrinkMenu = () => {
   const addDrink = (newDrink: Drink) => {
     if (newDrink.milkiness === 'normal' && newDrink.sweetness === 'kosong' ) {
       alert('Invalid sweetness!');
+      return;
     }
 
     const updatedDrink = { ...newDrink };
