@@ -6,12 +6,18 @@ import Divider from '@mui/material/Divider';
 import AddDrink, { Drink } from "./AddDrink";
 import DrinkList from "./DrinkList";
 import { DrinkType, DRINK_DEFAULTS } from "../constants";
+import KopiImage from "./Kopi";
+import TehImage from "./Teh";
+import YuanYangImage from "./YuanYang";
+import MiloImage from "./Milo";
+import { Typography } from "@mui/material";
+
 
 const DRINK_TO_ICON_MAPPING = [
-  { name: 'Kopi', fontSize: 'medium' },
-  { name: 'Teh', fontSize: 'medium' },
-  { name: 'Yuan Yang', fontSize: 'small' },
-  { name: 'Milo', fontSize: 'medium' },
+  { name: 'Kopi', fontSize: 'medium', image: <KopiImage /> },
+  { name: 'Teh', fontSize: 'medium', image: <TehImage /> },
+  { name: 'Yuan Yang', fontSize: 'small', image: <YuanYangImage /> },
+  { name: 'Milo', fontSize: 'medium', image: <MiloImage /> },
 ];
 
 const drinkMatch = (drink1: Drink, drink2: Drink) => {
@@ -50,20 +56,26 @@ const DrinkMenu = () => {
   }
 
   return <>
-    <Stack spacing={2} direction="row" sx={{ mt: 1, justifyContent: 'center', padding: 1.5 }}>
-      {DRINK_TO_ICON_MAPPING.map(({ name, fontSize }) => 
-        <Button key={name}
-                variant="outlined"
-                onClick={() => setDrinkType(name as DrinkType)}
-                sx={{
-                  color: drinkType === name ? 'white': '#6A7CA8',
-                  backgroundColor: drinkType === name ? '#293994': '#EEF0F8',
-                  border: 'none',
-                  fontSize,
-                }}
+    <Stack spacing={0.25} direction="row" sx={{ mt: 1, justifyContent: 'center' }}>
+      {DRINK_TO_ICON_MAPPING.map(({ name, fontSize, image }) =>
+        <Stack direction="column" spacing={0.5} padding={1}>
+          <Button key={name}
+          variant="outlined"
+          onClick={() => setDrinkType(name as DrinkType)}
+          sx={{
+            color: drinkType === name ? 'white': '#6A7CA8',
+            backgroundColor: drinkType === name ? '#293994': '#EEF0F8',
+            border: 'none',
+            borderRadius: '7px',
+            padding: '15px 10px',
+            minHeight: '82px',
+            // fontSize,
+          }}
         >
-          {name}
-      </Button>)}
+          {image}
+            </Button>
+            <Typography variant="subtitle1" sx={{ textAlign: 'center', color: drinkType === name ? '#293994': '#6c757d' }}>{name}</Typography>
+        </Stack>)}
     </Stack>
     {drinkType && <>
       <AddDrink addDrink={addDrink} drinkType={drinkType} />
