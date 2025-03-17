@@ -10,15 +10,13 @@ type Option = {
 }
 
 type SelectionGroupProps = {
-  defaultValue: string;
   options: Option[],
   label: string;
   onSelect: (value: string) => void;
+  selectedValue: string;
 };
 
-const SelectionGroup = ({ defaultValue, options, label, onSelect }: SelectionGroupProps) => {
-  const [selectedValue, setSelectedValue] = useState(defaultValue);
-
+const SelectionGroup = ({ options, label, onSelect, selectedValue }: SelectionGroupProps) => {
   return <Stack direction="column" spacing={1} padding={0.5}>
       <Typography variant="h6" component="h1" sx={{ color: '#6c757d' }}>{label}</Typography>
       <Stack direction="row" spacing={1.5}>
@@ -29,7 +27,6 @@ const SelectionGroup = ({ defaultValue, options, label, onSelect }: SelectionGro
             onClick={() => {
               if (disabled) return;
               onSelect(value);
-              setSelectedValue(value);
             }}
             sx={{
               fontSize: 'large',
