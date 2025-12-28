@@ -12,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={styles.mainContainer}>
+    <html lang="en" className={styles.mainContainer} suppressHydrationWarning>
       <body style={{ margin: 0 }}>{children}</body>
     </html>
   );

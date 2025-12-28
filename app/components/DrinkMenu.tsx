@@ -28,12 +28,20 @@ const drinkMatch = (drink1: Drink, drink2: Drink) => {
 };
 
 const DrinkMenu = () => {
-  const initialDrinkList = JSON.parse(localStorage.getItem('drinks') || '[]') || []
-  const [drinkList, setDrinkList] = useState<Drink[]>(initialDrinkList);
+  const [drinkList, setDrinkList] = useState<Drink[]>([]);
   const [drinkType, setDrinkType] = useState<DrinkType>();
+  const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
   useEffect(() => {
-    localStorage.setItem('drinks', JSON.stringify(drinkList));
+    const initialDrinkList = JSON.parse(localStorage.getItem('drinks') || '[]')
+    setDrinkList(initialDrinkList);
+    setIsInitialized(true);
+  }, [])
+
+  useEffect(() => {
+    if (isInitialized) {
+      localStorage.setItem('drinks', JSON.stringify(drinkList));
+    }
   }, [drinkList])
 
   const addDrink = (newDrink: Drink) => {
