@@ -1,8 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import Divider from '@mui/material/Divider';
 import AddDrink, { Drink } from "./AddDrink";
 import DrinkList from "./DrinkList";
 import { DrinkType, DRINK_DEFAULTS } from "../constants";
@@ -29,8 +28,13 @@ const drinkMatch = (drink1: Drink, drink2: Drink) => {
 };
 
 const DrinkMenu = () => {
-  const [drinkList, setDrinkList] = useState<Drink[]>([]);
+  const initialDrinkList = JSON.parse(localStorage.getItem('drinks') || '[]') || []
+  const [drinkList, setDrinkList] = useState<Drink[]>(initialDrinkList);
   const [drinkType, setDrinkType] = useState<DrinkType>();
+
+  useEffect(() => {
+    localStorage.setItem('drinks', JSON.stringify(drinkList));
+  }, [drinkList])
 
   const addDrink = (newDrink: Drink) => {
     const updatedDrink = {
@@ -58,7 +62,7 @@ const DrinkMenu = () => {
   return <>
     <Stack spacing={0.25} direction="row" sx={{ mt: 1, justifyContent: 'center' }}>
       {DRINK_TO_ICON_MAPPING.map(({ name, fontSize, image }) =>
-        <Stack direction="column" spacing={0.5} padding={1}>
+        <Stack key={name} direction="column" spacing={0.5} padding={1}>
           <Button key={name}
           variant="outlined"
           onClick={() => setDrinkType(name as DrinkType)}
